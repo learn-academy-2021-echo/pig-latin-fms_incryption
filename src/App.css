@@ -2,10 +2,14 @@ body {
   margin: 1rem;
   font-family: 'Josefin Sans', sans-serif;
   text-align: center;
+  background-color: #e28743;
+  font-family: 'Fuzzy Bubbles', cursive;
+
 }
 
 h1 {
   font-size: 4rem;
+  padding-top: 40px;
 }
 
 button {
@@ -19,7 +23,9 @@ footer {
 }
 
 .butcherPig {
-  width: 12rem;
+  width: 24rem;
+  border-style: dotted;
+  border-width: 4px;
 }
 
 .userInput {
@@ -31,10 +37,12 @@ footer {
 }
 
 .inputArea {
-  background-color: #606060;
-  color: #fff;
+  background-color: #1e81b0;
+  color: #21130d;
   border-radius: .5rem;
   padding: 1rem;
+  border-style: dotted;
+  border-width: 4px;
 }
 
 @media only screen and (max-width: 650px) {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import './App.css'
-import butcherPig from './assets/butcherPig.jpeg'
+// import 'three-little-pigs.jpeg' from './assets/three-little-pigs.jpeg';
 
 class App extends Component {
   constructor(props) {
@@ -34,46 +34,60 @@ class App extends Component {
       })
       console.log("vowelsArray:", vowelsArray)
 
-      // 1st condition:
+      let u = currentWord.indexOf(vowelsArray[0])
+      let q = currentWord.indexOf("q")
+
+      // Y condition no vowels
+      // no vowels but has the letter <y> , anything before the <y> gets shifted to right
+      // add <ay>
+
+      if (vowelsArray.length === 0 && currentWord.indexOf("y") > 0){
+        let yIndex = currentWord.indexOf("y")
+        let firstFragment = currentWord.slice(yIndex)
+        let endFragment = currentWord.slice(0,yIndex)
+        console.log(`${firstFragment}${endFragment}ay`)
+        return `${firstFragment}${endFragment}ay`
+      }
+      
+      // Consonant condition:
       //    split the words at the first vowel and have the letters before the vowel, shift the end
       //    of the same word.
       //    shift the consonants to the end of the word when no vowel in index 0
       //    add the <ay>  
       //    pineapple with expected output :  ineapple-p-ay .... vowelsArray = [i, e, a, e,] 
-      //    
-      if (currentWord.indexOf(vowelsArray[0]) > 0) {
-        console.log("We made it in")
-        let copyCurrentWord = currentWord.slice(0, currentWord.length)
-        //  copyCurrentWord.splice(currentWord.indexOf(0)),
+
+      if (currentWord.indexOf(vowelsArray[0]) > 0 && (u - q) !== 1) {
+        let firstVowel = currentWord.indexOf(vowelsArray[0]);
+        let endFragment = currentWord.slice(0,firstVowel);
+        let firstFragment = currentWord.slice(firstVowel);
+
+        console.log (`${firstFragment}${endFragment}ay`)
+        return currentWord = `${firstFragment}${endFragment}ay`
       }
-      //    console.log("vowelsArray:", vowelsArray)
-      //    .splice(index, # of elements to remove, what you want to replace it with)
-      //      
-      //      
-      // 
-      // 
-      // 
-      // 2nd condition
+
+      // Vowel condition
       //    when the vowel is in the index = 0 leave as is
       //    add <way>
       //    if the first character is a vowel, then take the whole word and 
+
+      if (currentWord.indexOf(vowelsArray[0]) === 0) {
+          console.log (`${currentWord}way`)
+          return `${currentWord}way`
+      }
       // 
-      // 3rd condition
+      // QU condition
       //    if <qu> shift, including the u, to the en of the word
       //    add <ay>
-      //
       //    filter
-      //  
-      // 4th condition 
-      //    no vowels but has the letter <y> , anything before the <y> gets shifted to right
-      // add <ay>
-      // 
-      // your code here!
 
-
+      if ((u - q) === 1){
+        let firstFrag = currentWord.slice(u + 1)
+        let endFragment = currentWord.slice(0, u + 1)
+        console.log (`${firstFrag}${endFragment}ay`)
+        return `${firstFrag}${endFragment}ay`
+             }
 
       // Remember: console.log is your friend :)
-
 
       // ACTION ITEM: change the value of currentWord to the name of whatever variable you made containing your Pig Latin'd word
       return currentWord
@@ -117,7 +131,7 @@ class App extends Component {
       <>
         <h1>Pig Latin Translator</h1>
         <img
-          src={butcherPig}
+          src="https://oakhouseschool.com/wp-content/uploads/2018/12/three-little-pigs.jpg"
           alt="pig with butcher cut names in pig latin"
           className="butcherPig"
         />
@@ -136,7 +150,7 @@ class App extends Component {
           <button onClick={this.restartGame}>Clear</button>
         </div>
         <p>{this.state.phraseTranslated}</p>
-        <footer>Coded by ~your name here~</footer>
+        <footer>Coded by Salvador, Frank, and Mikka</footer>
       </>
     )
   }
